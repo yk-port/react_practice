@@ -16,19 +16,22 @@ export default class MainArea extends React.Component {
     }
   }
 
-  render() {
+  renderTodoItems() {
     let todoItemDom = [];
     for (let i = 0; i < this.state.todos.length; i++) {
       let todoItem = <li className="todo-list-item" key={"item-" + i}>{this.state.todos[i].label}</li>;
       todoItemDom.push(todoItem);
     }
+    return todoItemDom;
+  }
 
+  render() {
     return (
       <div className="main-area">
         <Header />
         <main className="list-area">
           <ul className="todo-list">
-            {todoItemDom}
+            {this.renderTodoItems()}
           </ul>
         </main>
         <Footer />
