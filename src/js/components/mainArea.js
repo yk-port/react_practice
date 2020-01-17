@@ -17,6 +17,9 @@ export default class MainArea extends React.Component {
     }
   }
 
+  onClickAddButton(event) {
+  }
+
   renderTodoItems() {
     let todoItemDom = [];
     for (let i = 0; i < this.state.todos.length; i++) {
@@ -35,7 +38,8 @@ export default class MainArea extends React.Component {
             <input type="text"
                    className="todo-input"
                    placeholder="Todoを追加" />
-            <button className="add-button">登録</button>
+            <button className="add-button"
+                    onClick={this.onClickAddButton}>登録</button>
           </div>
           <ul className="todo-list">
             {this.renderTodoItems()}
