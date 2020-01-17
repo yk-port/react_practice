@@ -17,6 +17,9 @@ export default class MainArea extends React.Component {
     }
   }
 
+  onChangeTodoInput(event) {
+  }
+
   onClickAddButton(event) {
   }
 
@@ -37,7 +40,8 @@ export default class MainArea extends React.Component {
           <div className="todo-input-area">
             <input type="text"
                    className="todo-input"
-                   placeholder="Todoを追加" />
+                   placeholder="Todoを追加"
+                   onChange={this.onChangeTodoInput} />
             <button className="add-button"
                     onClick={this.onClickAddButton}>登録</button>
           </div>
