@@ -13,7 +13,8 @@ export default class MainArea extends React.Component {
         { label: 'Todo3' },
         { label: 'Todo4' },
         { label: 'Todo5' },
-      ]
+      ],
+      todoInputValue: ''
     }
   }
 
@@ -41,6 +42,7 @@ export default class MainArea extends React.Component {
             <input type="text"
                    className="todo-input"
                    placeholder="Todoを追加"
+                   value={this.state.todoInputValue}
                    onChange={this.onChangeTodoInput} />
             <button className="add-button"
                     onClick={this.onClickAddButton}>登録</button>
