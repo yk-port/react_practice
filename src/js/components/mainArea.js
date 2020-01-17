@@ -11,7 +11,8 @@ export default class MainArea extends React.Component {
         { label: 'Todo1' },
         { label: 'Todo2' },
         { label: 'Todo3' },
-        { label: 'Todo4' }
+        { label: 'Todo4' },
+        { label: 'Todo5' },
       ]
     }
   }
@@ -30,6 +31,12 @@ export default class MainArea extends React.Component {
       <div className="main-area">
         <Header />
         <main className="list-area">
+          <div className="todo-input-area">
+            <input type="text"
+                   className="todo-input"
+                   placeholder="Todoを追加" />
+            <button className="add-button">登録</button>
+          </div>
           <ul className="todo-list">
             {this.renderTodoItems()}
           </ul>
