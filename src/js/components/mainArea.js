@@ -11,7 +11,7 @@ export default class MainArea extends React.Component {
 
     let todoItemDom = [];
     for (let i = 0; i < todos.length; i++) {
-      let todoItem = <li className="todo-list-item">{todos[i].label}</li>;
+      let todoItem = <li className="todo-list-item" key={"item-" + i}>{todos[i].label}</li>;
       todoItemDom.push(todoItem);
     }
 
