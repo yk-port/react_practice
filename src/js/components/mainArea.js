@@ -9,11 +9,11 @@ export default class MainArea extends React.Component {
 
     this.state = {
       todos: [
-        { label: 'Todo1' },
-        { label: 'Todo2' },
-        { label: 'Todo3' },
-        { label: 'Todo4' },
-        { label: 'Todo5' },
+        { id: 1, label: 'Todo1' },
+        { id: 2, label: 'Todo2' },
+        { id: 3, label: 'Todo3' },
+        { id: 4, label: 'Todo4' },
+        { id: 5, label: 'Todo5' },
       ],
       todoInputValue: ''
     }
