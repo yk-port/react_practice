@@ -35,10 +35,25 @@ export default class MainArea extends React.Component {
   }
 
   onCompleteTodo(id) {
+    // stateをコピーするための記述
     let _state = Object.assign({}, this.state);
+
     for (let i = 0; i < _state.todos.length; i++) {
       if (_state.todos[i].id == id) {
         _state.todos[i].completed = true;
+        break;
+      }
+    }
+    this.setState(_state);
+  }
+
+  onDeleteTodo(id) {
+    // stateをコピーするための記述
+    let _state = Object.assign({}, this.state);
+
+    for (let i = 0; i < _state.todos.length; i++) {
+      if (_state.todos[i].id == id) {
+        _state.todos.splice(i, 1);
         break;
       }
     }
@@ -53,6 +68,7 @@ export default class MainArea extends React.Component {
                          key={"item-" + i}
                          data={this.state.todos[i]}
                          completeTodo={this.onCompleteTodo.bind(this)}
+                         deleteTodo={this.onDeleteTodo.bind(this)}
                        />;
         todoItemDom.push(todoItem);
       }
