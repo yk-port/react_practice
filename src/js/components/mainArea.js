@@ -23,6 +23,14 @@ export default class MainArea extends React.Component {
   }
 
   onClickAddButton(event) {
+    let addItem = {label: this.state.todoInputValue};
+    let todos = this.state.todos.slice();
+    todos.push(addItem);
+
+    this.setState({
+      todos: todos,
+      todoInputValue: ''
+    });
   }
 
   renderTodoItems() {
