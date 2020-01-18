@@ -34,18 +34,26 @@ export default class MainArea extends React.Component {
     });
   }
 
-  onCompleteTodo(data) {
+  onCompleteTodo(id) {
+    let _state = Object.assign({}, this.state);
+    for (let i = 0; i < _state.todos.length; i++) {
+      if (_state.todos[i].id == id) {
+        _state.todos[i].completed = true;
+        break;
+      }
+    }
+    this.setState(_state);
   }
 
   renderTodoItems() {
     let todoItemDom = [];
     for (let i = 0; i < this.state.todos.length; i++) {
-      if (!this.state.todos.completed) {
+      if (!this.state.todos[i].completed) {
         let todoItem = <ListItem
-          key={"item-" + i}
-          data={this.state.todos[i]}
-          completeTodo={this.onCompleteTodo.bind(this)}
-        />;
+                         key={"item-" + i}
+                         data={this.state.todos[i]}
+                         completeTodo={this.onCompleteTodo.bind(this)}
+                       />;
         todoItemDom.push(todoItem);
       }
     }
