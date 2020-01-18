@@ -34,12 +34,16 @@ export default class MainArea extends React.Component {
     });
   }
 
+  onCompleteTodo(data) {
+  }
+
   renderTodoItems() {
     let todoItemDom = [];
     for (let i = 0; i < this.state.todos.length; i++) {
       let todoItem = <ListItem
                         key={"item-" + i}
                         data={this.state.todos[i]}
+                        completeTodo={this.onCompleteTodo.bind(this)}
                      />;
       todoItemDom.push(todoItem);
     }

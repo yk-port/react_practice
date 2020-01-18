@@ -3,7 +3,7 @@ import React from 'react';
 export default class ListItem extends React.Component {
 
   onChangeCheckBox(event) {
-    console.log('onChangeCheckBox');
+    this.props.completeTodo('test');
   }
 
   render() {
