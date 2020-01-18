@@ -9,11 +9,11 @@ export default class MainArea extends React.Component {
 
     this.state = {
       todos: [
-        { id: 1, label: 'Todo1' },
-        { id: 2, label: 'Todo2' },
-        { id: 3, label: 'Todo3' },
-        { id: 4, label: 'Todo4' },
-        { id: 5, label: 'Todo5' },
+        { id: 1, label: 'Todo1', completed: false },
+        { id: 2, label: 'Todo2', completed: false },
+        { id: 3, label: 'Todo3', completed: false },
+        { id: 4, label: 'Todo4', completed: false },
+        { id: 5, label: 'Todo5', completed: false },
       ],
       todoInputValue: ''
     }
@@ -40,12 +40,14 @@ export default class MainArea extends React.Component {
   renderTodoItems() {
     let todoItemDom = [];
     for (let i = 0; i < this.state.todos.length; i++) {
-      let todoItem = <ListItem
-                        key={"item-" + i}
-                        data={this.state.todos[i]}
-                        completeTodo={this.onCompleteTodo.bind(this)}
-                     />;
-      todoItemDom.push(todoItem);
+      if (!this.state.todos.completed) {
+        let todoItem = <ListItem
+          key={"item-" + i}
+          data={this.state.todos[i]}
+          completeTodo={this.onCompleteTodo.bind(this)}
+        />;
+        todoItemDom.push(todoItem);
+      }
     }
     return todoItemDom;
   }
