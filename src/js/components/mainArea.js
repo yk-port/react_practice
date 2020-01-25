@@ -8,13 +8,6 @@ export default class MainArea extends React.Component {
     super(props);
 
     this.state = {
-      todos: [
-        { id: 1, label: 'Todo1', completed: false },
-        { id: 2, label: 'Todo2', completed: false },
-        { id: 3, label: 'Todo3', completed: false },
-        { id: 4, label: 'Todo4', completed: false },
-        { id: 5, label: 'Todo5', completed: false },
-      ],
       todoInputValue: ''
     }
   }
@@ -62,11 +55,11 @@ export default class MainArea extends React.Component {
 
   renderTodoItems() {
     let todoItemDom = [];
-    for (let i = 0; i < this.state.todos.length; i++) {
-      if (!this.state.todos[i].completed) {
+    for (let i = 0; i < this.props.todoList.length; i++) {
+      if (!this.props.todoList[i].completed) {
         let todoItem = <ListItem
                          key={"item-" + i}
-                         data={this.state.todos[i]}
+                         data={this.props.todoList[i]}
                          completeTodo={this.onCompleteTodo.bind(this)}
                          deleteTodo={this.onDeleteTodo.bind(this)}
                        />;
