@@ -17,40 +17,15 @@ export default class MainArea extends React.Component {
   }
 
   onClickAddButton(event) {
-    let addItem = {label: this.state.todoInputValue};
-    let todos = this.state.todos.slice();
-    todos.push(addItem);
-
-    this.setState({
-      todos: todos,
-      todoInputValue: ''
-    });
+    this.props.onAddTodo(this.state.todoInputValue);
   }
 
   onCompleteTodo(id) {
-    // stateをコピーするための記述
-    let _state = Object.assign({}, this.state);
-
-    for (let i = 0; i < _state.todos.length; i++) {
-      if (_state.todos[i].id == id) {
-        _state.todos[i].completed = true;
-        break;
-      }
-    }
-    this.setState(_state);
+    this.props.onCompleteTodo(id);
   }
 
   onDeleteTodo(id) {
-    // stateをコピーするための記述
-    let _state = Object.assign({}, this.state);
-
-    for (let i = 0; i < _state.todos.length; i++) {
-      if (_state.todos[i].id == id) {
-        _state.todos.splice(i, 1);
-        break;
-      }
-    }
-    this.setState(_state);
+    this.props.onDeleteTodo(id);
   }
 
   renderTodoItems() {

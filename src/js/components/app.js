@@ -56,7 +56,7 @@ export default class App extends React.Component {
     let todoList = _state.todoList[_state.selectedGroup];
     for (let i = 0; i < todoList.length; i++) {
       if (todoList[i].id == id) {
-        todoList[i].splice(i, 1);
+        todoList.splice(i, 1);
         break;
       }
     }
