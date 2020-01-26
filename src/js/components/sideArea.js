@@ -1,4 +1,6 @@
 import React from 'react';
+// import ReactDom from 'react-dom';
+import AddGroupDialog from './addGroupDialog';
 
 export default class SideArea extends React.Component {
   constructor(props) {
@@ -25,6 +27,7 @@ export default class SideArea extends React.Component {
         <ul className="group-list">
           {this.renderGroup()}
         </ul>
+        <AddGroupDialog />
       </div>
     )
   }
