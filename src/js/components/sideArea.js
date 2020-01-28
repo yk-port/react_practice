@@ -5,10 +5,27 @@ import AddGroupDialog from './addGroupDialog';
 export default class SideArea extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showAddGroupDialog: false
+    }
   }
 
   onClickGroup(id) {
     this.props.onSelect(id);
+  }
+
+  onClickAddGroup(event) {
+    this.setState({ showAddGroupDialog: true });
+  }
+
+  onSaveAddGroupDialog(groupName) {
+    this.props.onAddGroup(groupName);
+    this.setState({ showAddGroupDialog: false });
+  }
+
+  onCancelAddGroupDialog(event) {
+    this.setState({ showAddGroupDialog: false });
   }
 
   renderGroup() {
@@ -27,7 +44,16 @@ export default class SideArea extends React.Component {
         <ul className="group-list">
           {this.renderGroup()}
         </ul>
-        <AddGroupDialog />
+        <div className="side-area-footer">
+          <button onClick={this.onClickAddGroup.bind(this)}>
+            グループ新規作成
+          </button>
+        </div>
+        <AddGroupDialog
+          show={this.state.showAddGroupDialog}
+          onSave={this.onSaveAddGroupDialog.bind(this)}
+          onCancel={this.onCancelAddGroupDialog.bind(this)}
+        />
       </div>
     )
   }
