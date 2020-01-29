@@ -26,7 +26,7 @@ export default class App extends React.Component {
         ]
       },
       todoCount: 5,
-      groupCount: 1,
+      groupCount: 2,
       selectedGroup: 'inbox'
     }
   }
@@ -71,11 +71,14 @@ export default class App extends React.Component {
   onAddGroup(groupName) {
     let _state = Object.assign({}, this.state);
     _state.groupCount++;
+    let groupId = 'group-' + _state.groupCount;
     let groupItem = {
-      id: 'group-' + _state.groupCount,
+      id: groupId,
       label: groupName,
     }
     _state.groupList.push(groupItem);
+
+    _state.todoList[groupId] = [];
     this.setState(_state);
   }
 
