@@ -2,6 +2,7 @@ import React from 'react';
 
 import Header from './header';
 import Footer from './footer';
+import ListItem from './listItem';
 
 export default class MainArea extends React.Component {
   constructor(props) {
@@ -36,7 +37,9 @@ export default class MainArea extends React.Component {
   renderTodoItems() {
     let todoItemDom = [];
     this.state.todos.forEach((todo, index) => {
-      let todoItem = <li className="todo-list-item" key={"item-" + index}>{todo.label}</li>;
+      let todoItem = <ListItem
+                        key={"item" + index}
+                        data={todo.label} />;
       todoItemDom.push(todoItem);
     });
     return todoItemDom;
