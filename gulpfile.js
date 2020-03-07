@@ -11,7 +11,7 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('watch', function() {
-  watch('./**/*.html', function() {
+  watch(['./**/*.html', './js/**/*.js'], function() {
     browserSync.reload();
   });
 });
