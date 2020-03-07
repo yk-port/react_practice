@@ -3,7 +3,6 @@ html, body {
   height: 100%;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
 #root {
@@ -20,7 +19,7 @@ html, body {
 .side-area {
   width: 300px;
   height: 100%;
-  background: #aaa;
+  background: #e2e2e2;
 }
 
 .main-area {
@@ -29,17 +28,41 @@ html, body {
   position: relative;
 }
 
-.header {
+.main-area .list-area {
+  box-sizing: border-box;
   width: 100%;
+  height: calc(100% - 60px - 30px);
   padding: 20px;
-  background: #ddd;
+}
+
+.main-area .list-area .todo-list {
+  margin: 0;
+  padding: 0;
+}
+
+.main-area .list-area .todo-list .todo-list-item {
+  padding: 10px 20px;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  list-style: none;
+}
+
+.header {
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  padding: 20px;
+  background: #cccccc;
 }
 
 .footer {
+  box-sizing: border-box;
   position: absolute;
   width: 100%;
+  height: 30px;
   padding: 10px;
   bottom: 0;
   left: 0;
-  background: #ddd;
+  background: #cccccc;
 }
