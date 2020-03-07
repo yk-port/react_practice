@@ -6,12 +6,20 @@ import AddGroupDialog from './addGroupDialog';
 export default class SideArea extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      showAddGroupDialog: false,
+    }
   }
 
   onClickGroup(event) {
     let listItem = ReactDOM.findDOMNode(event.target);
     let clickedId = listItem.dataset.id;
     this.props.onSelect(clickedId);
+  }
+
+  onClickAddGroup() {
+    this.setState({ showAddGroupDialog: true });
   }
 
   renderGroup() {
@@ -33,7 +41,12 @@ export default class SideArea extends React.Component {
         <ul className="group-list">
           {this.renderGroup()}
         </ul>
-        <AddGroupDialog />
+        <AddGroupDialog
+          show={this.state.showAddGroupDialog} />
+        <div className="side-area-footer">
+          <button
+            onClick={this.onClickAddGroup.bind(this)}>グループ作成</button>
+        </div>
       </div>
     );
   }
