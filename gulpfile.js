@@ -9,7 +9,7 @@ var webpackConfig = require('./webpack.config');
 
 gulp.task('compile', function(){
   return gulp.src([
-    './src/js/app.js',
+    './src/js/index.js',
     ])
     .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
     .pipe(webpackStream(webpackConfig), null, function(err, stats){
