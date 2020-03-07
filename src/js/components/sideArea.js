@@ -34,7 +34,7 @@ export default class SideArea extends React.Component {
   render() {
     return (
       <div className="side-area">
-        <ul>
+        <ul className="group-list">
           {this.renderGroup()}
         </ul>
       </div>
