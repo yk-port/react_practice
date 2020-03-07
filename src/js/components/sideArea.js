@@ -5,20 +5,6 @@ export default class SideArea extends React.Component {
     super(props);
 
     this.state = {
-      groupList: [
-        {
-          id: 'inbox',
-          label: '受信箱',
-        },
-        {
-          id: 'group-1',
-          label: 'グループ1',
-        },
-        {
-          id: 'group-2',
-          label: 'グループ2',
-        },
-      ],
     }
   }
 

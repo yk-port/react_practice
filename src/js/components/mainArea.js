@@ -9,18 +9,6 @@ export default class MainArea extends React.Component {
     super(props);
 
     this.state = {
-      todos: [
-        {
-          id: 'item-1',
-          label: 'Todo1',
-          completed: false,
-        },
-        {
-          id: 'item-2',
-          label: 'Todo2',
-          completed: false,
-        },
-      ],
       todoInputValue: '',
     }
   }
