@@ -27,6 +27,7 @@ export default class App extends React.Component {
           { id: 'item-6', label: 'Todo6', completed: false },
         ]
       },
+      selectedGroup: 'inbox',
     }
   }
   render() {
