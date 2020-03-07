@@ -29,18 +29,11 @@ export default class MainArea extends React.Component {
   }
 
   onCompleteTodo(id) {
-    let _state = Object.assign({}, this.state);
-    _state.todos.forEach(todo => {
-      if (todo.id == id) {
-        todo.completed = true;
-      }
-    });
-
-    this.setState(_state);
+    this.props.onCompleteTodo(id);
   }
 
   onDeleteTodo(id) {
-    this.props.onDeleteTodo(id)
+    this.props.onDeleteTodo(id);
   }
 
   renderTodoItems() {
@@ -50,7 +43,7 @@ export default class MainArea extends React.Component {
         let todoItem = <ListItem
                           key={todo.id}
                           data={todo}
-                          completeTodo={this.onCompleteTodo.bind(this)}
+                          completeTodo={() => this.onCompleteTodo(todo.id)}
                           deleteTodo={() => this.onDeleteTodo(todo.id)} />;
         todoItemDom.push(todoItem);
       }
