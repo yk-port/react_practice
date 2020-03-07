@@ -5,10 +5,17 @@ export default class SideArea extends React.Component {
     super(props);
   }
 
+  onClickGroup(id) {
+    this.props.onSelect(id);
+  }
+
   renderGroup() {
     let groupListDom = [];
     this.props.groupList.forEach(group => {
-      let groupItem = <li key={group.id}>{group.label}</li>;
+      let groupItem = <li key={group.id}
+                          onClick={() => this.onClickGroup(group.id)}>
+                        {group.label}
+                      </li>;
       groupListDom.push(groupItem);
     });
     return groupListDom;
