@@ -59,9 +59,9 @@ export default class App extends React.Component {
   onDeleteTodo(id) {
     let _state = Object.assign(this.state);
     let todoList = _state.todoList[_state.selectedGroup];
-    todoList.forEach(todo => {
+    todoList.forEach((todo, index) => {
       if (todo.id == id) {
-        todoList.splice(todo, 1);
+        todoList.splice(index, 1);
       }
     });
     this.setState(_state);
