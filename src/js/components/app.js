@@ -33,8 +33,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="wrap">
-        <SideArea />
-        <MainArea />
+        <SideArea
+          groupList={this.state.groupList} />
+        <MainArea
+          todoList={this.state.todoList[this.state.selectedGroup]} />
       </div>
     );
   }

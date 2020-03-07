@@ -52,7 +52,7 @@ export default class MainArea extends React.Component {
 
   renderTodoItems() {
     let todoItemDom = [];
-    this.state.todos.forEach((todo) => {
+    this.props.todoList.forEach((todo) => {
       if (!todo.completed) {
         let todoItem = <ListItem
                         key={todo.id}
