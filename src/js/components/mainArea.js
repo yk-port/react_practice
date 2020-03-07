@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Header from './header';
 import Footer from './footer';
 import ListItem from './listItem';
@@ -8,40 +9,71 @@ export default class MainArea extends React.Component {
     super(props);
 
     this.state = {
-      todoInputValue: ''
+      todos: [
+        {
+          id: 'item-1',
+          label: 'Todo1',
+          completed: false,
+        },
+        {
+          id: 'item-2',
+          label: 'Todo2',
+          completed: false,
+        },
+      ],
+      todoInputValue: '',
     }
   }
 
-  onChangeTodoInput(event) {
-    this.setState({todoInputValue: event.target.value})
+  onChangeTodoInput(event){
+    this.setState({ todoInputValue: event.target.value })
   }
 
   onClickAddButton(event) {
-    this.setState({ todoInputValue: '' })
-    this.props.onAddTodo(this.state.todoInputValue);
+    let addItem = { label: this.state.todoInputValue };
+    let todos = this.state.todos.slice();
+    todos.push(addItem);
+
+    this.setState({
+      todos,
+      todoInputValue: '',
+    });
   }
 
   onCompleteTodo(id) {
-    this.props.onCompleteTodo(id);
+    let _state = Object.assign({}, this.state);
+    _state.todos.forEach(todo => {
+      if (todo.id == id) {
+        todo.completed = true;
+      }
+    });
+
+    this.setState(_state);
   }
 
   onDeleteTodo(id) {
-    this.props.onDeleteTodo(id);
+    let _state = Object.assign({}, this.state);
+    _state.todos.forEach(todo => {
+      if (todo.id == id) {
+        _state.todos.splice(todo, 1);
+      }
+    });
+
+    this.setState(_state);
   }
 
   renderTodoItems() {
     let todoItemDom = [];
-    for (let i = 0; i < this.props.todoList.length; i++) {
-      if (!this.props.todoList[i].completed) {
+    this.state.todos.forEach((todo) => {
+      if (!todo.completed) {
         let todoItem = <ListItem
-                         key={"item-" + i}
-                         data={this.props.todoList[i]}
-                         completeTodo={this.onCompleteTodo.bind(this)}
-                         deleteTodo={this.onDeleteTodo.bind(this)}
-                       />;
+                        key={todo.id}
+                        data={todo}
+                        completeTodo={this.onCompleteTodo.bind(this)}
+                        deleteTodo={this.onDeleteTodo.bind(this)} />;
         todoItemDom.push(todoItem);
       }
-    }
+    });
     return todoItemDom;
   }
 
@@ -65,6 +97,6 @@ export default class MainArea extends React.Component {
         </main>
         <Footer />
       </div>
-    )
+    );
   }
 }
