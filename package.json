@@ -14,6 +14,7 @@
   "description": "",
   "devDependencies": {
     "browser-sync": "^2.26.7",
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-watch": "^5.0.1"
   }
 }

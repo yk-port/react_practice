@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var watch = require('gulp-watch');
 var browserSync = require('browser-sync').create();
 
 gulp.task('browser-sync', function() {
@@ -9,4 +10,10 @@ gulp.task('browser-sync', function() {
   });
 });
 
-gulp.task('default', ['browser-sync']);
+gulp.task('watch', function() {
+  watch('./**/*.html', function() {
+    browserSync.reload();
+  });
+});
+
+gulp.task('default', ['browser-sync', 'watch']);
