@@ -17,15 +17,9 @@ export default class MainArea extends React.Component {
     this.setState({ todoInputValue: event.target.value })
   }
 
-  onClickAddButton(event) {
-    let addItem = { label: this.state.todoInputValue };
-    let todos = this.state.todos.slice();
-    todos.push(addItem);
-
-    this.setState({
-      todos,
-      todoInputValue: '',
-    });
+  onClickAddButton() {
+    this.props.onAddTodo(this.state.todoInputValue);
+    this.setState({ todoInputValue: '' });
   }
 
   onCompleteTodo(id) {
