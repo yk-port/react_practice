@@ -10,10 +10,16 @@ export default class MainArea extends React.Component {
 
     this.state = {
       todos: [
-        { label: 'Todo1' },
-        { label: 'Todo2' },
-        { label: 'Todo3' },
-        { label: 'Todo4' },
+        {
+          id: 'item-1',
+          label: 'Todo1',
+          completed: false,
+        },
+        {
+          id: 'item-2',
+          label: 'Todo2',
+          completed: false,
+        },
       ],
       todoInputValue: '',
     }
@@ -34,13 +40,27 @@ export default class MainArea extends React.Component {
     });
   }
 
+  onCompleteTodo(id) {
+    let _state = Object.assign({}, this.state);
+    _state.todos.forEach(todo => {
+      if (todo.id == id) {
+        todo.completed = true;
+      }
+    });
+
+    this.setState(_state);
+  }
+
   renderTodoItems() {
     let todoItemDom = [];
-    this.state.todos.forEach((todo, index) => {
-      let todoItem = <ListItem
-                        key={"item" + index}
-                        data={todo.label} />;
-      todoItemDom.push(todoItem);
+    this.state.todos.forEach((todo) => {
+      if (!todo.completed) {
+        let todoItem = <ListItem
+                        key={todo.id}
+                        data={todo}
+                        completeTodo={this.onCompleteTodo.bind(this)} />;
+        todoItemDom.push(todoItem);
+      }
     });
     return todoItemDom;
   }
