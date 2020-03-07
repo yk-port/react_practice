@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var watch = require('gulp-watch');
 var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
+var sass = require('gulp-sass');
 var browserSync = require('browser-sync').create();
 var webpack = require('webpack');
 var webpackStream = require('webpack-stream');
@@ -23,6 +24,15 @@ gulp.task('compile', function () {
     .pipe(gulp.dest('js'))
 });
 
+gulp.task('sass', function() {
+  return gulp.src('./src/sass/**/*.scss')
+    .pipe(plumber({
+      errorHandler: notify.onError("Error: <%= error.message %>")
+    }))
+    .pipe(sass())
+    .pipe(gulp.dest('./css'));
+});
+
 gulp.task('browser-sync', function () {
   browserSync.init({
     server: {
@@ -36,9 +46,13 @@ gulp.task('watch', function () {
     gulp.start(['compile']);
   });
 
+  watch(['./src/sass/**/**.scss'], function () {
+    gulp.start(['sass']);
+  });
+
   watch(['./**/*.html', './js/**/*.js', './css/**/**.css'], function () {
     browserSync.reload();
   });
 });
 
-gulp.task('default', ['compile', 'browser-sync', 'watch']);
+gulp.task('default', ['compile', 'sass', 'browser-sync', 'watch']);
