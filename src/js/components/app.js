@@ -28,7 +28,43 @@ export default class App extends React.Component {
         ]
       },
       selectedGroup: 'inbox',
+      todoCount: 6,
     }
+  }
+
+  onAddTodo(label) {
+    let _state = Object.assign(this.state);
+    _state.todoCount++;
+    let todoList = _state.todoList[_state.selectedGroup];
+    let todoItem = {
+      label,
+      id: 'item' + _state.todoCount,
+      completed: false,
+    };
+    todoList.push(todoItem);
+    this.setState(_state);
+  }
+
+  onCompleteTodo(id) {
+    let _state = Object.assign(this.state);
+    let todoList = _state.todoList[_state.selectedGroup];
+    todoList.forEach(todo => {
+      if (todo.id == id) {
+        todo.completed = true;
+      }
+    });
+    this.setState(_state);
+  }
+
+  onDeleteTodo(id) {
+    let _state = Object.assign(this.state);
+    let todoList = _state.todoList[_state.selectedGroup];
+    todoList.forEach(todo => {
+      if (todo.id == id) {
+        todoList.splice(todo, 1);
+      }
+    });
+    this.setState(_state);
   }
 
   onSelectGroup(id) {
@@ -42,7 +78,10 @@ export default class App extends React.Component {
           groupList={this.state.groupList}
           onSelect={this.onSelectGroup.bind(this)} />
         <MainArea
-          todoList={this.state.todoList[this.state.selectedGroup]} />
+          todoList={this.state.todoList[this.state.selectedGroup]}
+          onAddTodo={this.onAddTodo.bind(this)}
+          onCompleteTodo={this.onCompleteTodo.bind(this)}
+          onDeleteTodo={this.onDeleteTodo.bind(this)} />
       </div>
     );
   }
