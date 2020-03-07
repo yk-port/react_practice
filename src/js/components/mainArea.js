@@ -31,6 +31,12 @@ export default class MainArea extends React.Component {
       <div className="main-area">
         <Header />
         <main className="list-area">
+          <div className="todo-input-area">
+            <input type="text"
+                   className="todo-input"
+                   placeholder="Todoを追加" />
+            <button className="add-button">登録</button>
+          </div>
           <ul className="todo-list">
             {this.renderTodoItems()}
           </ul>
