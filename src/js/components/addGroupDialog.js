@@ -5,8 +5,10 @@ export default class AddGroupDialog extends React.Component{
     this.props.onCancel();
   }
 
-  onSave() {
-    this.props.onSave();
+  onSave(event) {
+    // refを使ってDOMを取得する方法
+    let groupNameInput = this.refs.groupName;
+    this.props.onSave(groupNameInput.value);
   }
 
   render() {
@@ -18,6 +20,7 @@ export default class AddGroupDialog extends React.Component{
             <div className="dialog-content">
               グループ名：
               <input
+                ref="groupName"
                 type="text"
                 name="groupName"
                 className="group-text-input" />
