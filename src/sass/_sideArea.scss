@@ -2,10 +2,26 @@
   width: $sideAreaWidth;
   height: 100%;
   background: #e2e2e2;
+  position: relative;
   .group-list {
     li {
       padding: 10px 20px;
       border-bottom: 1px solid #CCCCCC;
+      cursor: pointer;
+    }
+  }
+
+  .side-area-footer {
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    width: 100%;
+    .add-group-button {
+      width: calc(100% - 40px);
+      height: 40px;
+      border: 1px solid #CCCCCC;
+      font-size: 0.9rem;
+      border-radius: 5px;
       cursor: pointer;
     }
   }

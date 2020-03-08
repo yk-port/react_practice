@@ -56,6 +56,7 @@ export default class SideArea extends React.Component {
           onCancel={this.onCancelAddGroupDialog.bind(this)} />
         <div className="side-area-footer">
           <button
+            className="add-group-button"
             onClick={this.onClickAddGroup.bind(this)}>グループ作成</button>
         </div>
       </div>
