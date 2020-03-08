@@ -22,7 +22,8 @@ export default class SideArea extends React.Component {
     this.setState({ showAddGroupDialog: true });
   }
 
-  onSaveAddGroupDialog() {
+  onSaveAddGroupDialog(groupName) {
+    this.props.onAddGroup(groupName);
     this.setState({ showAddGroupDialog: false });
   }
 
