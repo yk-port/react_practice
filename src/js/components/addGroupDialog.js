@@ -1,6 +1,14 @@
 import React from 'react';
 
-export default class AddGroupDialog extends React.Component {
+export default class AddGroupDialog extends React.Component{
+  onCancel() {
+    this.props.onCancel();
+  }
+
+  onSave() {
+    this.props.onSave();
+  }
+
   render() {
     if (this.props.show) {
       return (
@@ -16,9 +24,11 @@ export default class AddGroupDialog extends React.Component {
             </div>
             <div className="dialog-footer">
               <button
-                className="cancel-button">キャンセル</button>
+                className="cancel-button"
+                onClick={this.onCancel.bind(this)}>キャンセル</button>
               <button
-                className="save-button">保存</button>
+                className="save-button"
+                onClick={this.onSave.bind(this)}>保存</button>
             </div>
           </div>
         </div>
