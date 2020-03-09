@@ -11,6 +11,7 @@ export default class SideArea extends React.Component {
     this.state = {
       showAddGroupDialog: false,
       showEditGroupDialog: false,
+      selectedGroup: '',
     }
   }
 
@@ -34,7 +35,15 @@ export default class SideArea extends React.Component {
   }
 
   onClickEditGroup() {
-    this.setState({ showEditGroupDialog: true });
+    let editButton = ReactDOM.findDOMNode(event.target);
+    let id = editButton.dataset.id;
+    let selectedGroup = this.props.groupList.find(group => {
+      return group.id == id;
+    });
+    this.setState({
+      selectedGroup,
+      showEditGroupDialog: true
+    });
   }
 
   onSaveEditGroupDialog(groupName) {
@@ -57,6 +66,7 @@ export default class SideArea extends React.Component {
                           data-id={group.id}
                           onClick={this.onClickGroup.bind(this)}>{group.label}</span>
                         <button
+                          data-id={group.id}
                           className="group-edit-button"
                           onClick={this.onClickEditGroup.bind(this)}>編集</button>
                       </li>;
@@ -82,6 +92,7 @@ export default class SideArea extends React.Component {
           onCancel={this.onCancelAddGroupDialog.bind(this)} />
         <EditGroupDialog
           show={this.state.showEditGroupDialog}
+          group={this.state.selectedGroup}
           onSave={this.onSaveEditGroupDialog.bind(this)}
           onCancel={this.onCancelEditGroupDialog.bind(this)}
           onDelete={this.onDeleteEditGroupDialog.bind(this)} />
