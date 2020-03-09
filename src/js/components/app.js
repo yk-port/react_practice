@@ -85,13 +85,24 @@ export default class App extends React.Component {
     this.setState(_state);
   }
 
+  onEditGroup(id, groupName) {
+    let _state = Object.assign({}, this.state);
+    _state.groupList.forEach(group => {
+      if (group.id == id) {
+        group.label = groupName;
+      }
+    });
+    this.setState(_state);
+  }
+
   render() {
     return (
       <div className="wrap">
         <SideArea
           groupList={this.state.groupList}
           onSelect={this.onSelectGroup.bind(this)}
-          onAddGroup={this.onAddGroup.bind(this)} />
+          onAddGroup={this.onAddGroup.bind(this)}
+          onEditGroup={this.onEditGroup.bind(this)} />
         <MainArea
           todoList={this.state.todoList[this.state.selectedGroup]}
           onAddTodo={this.onAddTodo.bind(this)}

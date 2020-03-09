@@ -24,7 +24,7 @@ export default class EditGroupDialog extends React.Component{
   }
 
   onSave() {
-    this.props.onSave(this.state.groupName);
+    this.props.onSave(this.props.group.id, this.state.groupName);
   }
 
   onDelete() {
