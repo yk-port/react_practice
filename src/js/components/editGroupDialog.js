@@ -9,6 +9,12 @@ export default class EditGroupDialog extends React.Component{
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    let _state = Object.assign({}, this.state);
+    _state.groupName = nextProps.group.label;
+    this.setState(_state);
+  }
+
   onChangeGroupName(event) {
     this.setState({ groupName: event.target.value });
   }
@@ -37,7 +43,7 @@ export default class EditGroupDialog extends React.Component{
                 type="text"
                 name="groupName"
                 className="group-text-input"
-                placeholder={this.props.group.label}
+                value={this.state.groupName}
                 onChange={this.onChangeGroupName.bind(this)} />
             </div>
             <div className="dialog-footer">
