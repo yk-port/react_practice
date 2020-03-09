@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import AddGroupDialog from './addGroupDialog';
+import EditGroupDialog from './editGroupDialog'
 
 export default class SideArea extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class SideArea extends React.Component {
 
     this.state = {
       showAddGroupDialog: false,
+      showEditGroupDialog: false,
     }
   }
 
@@ -31,13 +33,32 @@ export default class SideArea extends React.Component {
     this.setState({ showAddGroupDialog: false });
   }
 
+  onClickEditGroup() {
+    this.setState({ showEditGroupDialog: true });
+  }
+
+  onSaveEditGroupDialog(groupName) {
+    this.setState({ showEditGroupDialog: false });
+  }
+
+  onCancelEditGroupDialog() {
+    this.setState({ showEditGroupDialog: false });
+  }
+
+  onDeleteEditGroupDialog() {
+    this.setState({ showEditGroupDialog: false });
+  }
+
   renderGroup() {
     let groupListDom = [];
     this.props.groupList.forEach(group => {
-      let groupItem = <li key={group.id}
+      let groupItem = <li key={group.id}>
+                        <span
                           data-id={group.id}
-                          onClick={this.onClickGroup.bind(this)}>
-                        {group.label}
+                          onClick={this.onClickGroup.bind(this)}>{group.label}</span>
+                        <button
+                          className="group-edit-button"
+                          onClick={this.onClickEditGroup.bind(this)}>編集</button>
                       </li>;
       groupListDom.push(groupItem);
     });
@@ -50,15 +71,20 @@ export default class SideArea extends React.Component {
         <ul className="group-list">
           {this.renderGroup()}
         </ul>
-        <AddGroupDialog
-          show={this.state.showAddGroupDialog}
-          onSave={this.onSaveAddGroupDialog.bind(this)}
-          onCancel={this.onCancelAddGroupDialog.bind(this)} />
         <div className="side-area-footer">
           <button
             className="add-group-button"
             onClick={this.onClickAddGroup.bind(this)}>グループ作成</button>
         </div>
+        <AddGroupDialog
+          show={this.state.showAddGroupDialog}
+          onSave={this.onSaveAddGroupDialog.bind(this)}
+          onCancel={this.onCancelAddGroupDialog.bind(this)} />
+        <EditGroupDialog
+          show={this.state.showEditGroupDialog}
+          onSave={this.onSaveEditGroupDialog.bind(this)}
+          onCancel={this.onCancelEditGroupDialog.bind(this)}
+          onDelete={this.onDeleteEditGroupDialog.bind(this)} />
       </div>
     );
   }

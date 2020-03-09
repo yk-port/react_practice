@@ -39,7 +39,6 @@
       border-top: 1px solid #CCCCCC;
       padding: 10px 20px;
       overflow: hidden;
-
       .cancel-button {
         float: left;
         width: 80px;
@@ -50,7 +49,17 @@
         cursor: pointer;
         font-size: 0.8rem;
       }
-
+      .delete-button {
+        float: left;
+        width: 80px;
+        height: 30px;
+        border-radius: 5px;
+        border: 0;
+        margin-left: 10px;
+        background: #B8B518;
+        cursor: pointer;
+        font-size: 0.8rem;
+      }
       .save-button {
         float: right;
         width: 80px;
