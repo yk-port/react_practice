@@ -102,6 +102,10 @@ export default class App extends React.Component {
         this.state.groupList.splice(index, 1);
       }
     });
+    delete _state.todoList[id];
+    if (_state.selectedGroup == id) {
+      _state.selectedGroup = 'inbox';
+    }
     this.setState(_state);
   }
 
