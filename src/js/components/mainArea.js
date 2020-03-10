@@ -9,18 +9,6 @@ export default class MainArea extends React.Component {
     super(props);
 
     this.state = {
-      todos: [
-        {
-          id: 'item-1',
-          label: 'Todo1',
-          completed: false,
-        },
-        {
-          id: 'item-2',
-          label: 'Todo2',
-          completed: false,
-        },
-      ],
       todoInputValue: '',
     }
   }
@@ -29,48 +17,28 @@ export default class MainArea extends React.Component {
     this.setState({ todoInputValue: event.target.value })
   }
 
-  onClickAddButton(event) {
-    let addItem = { label: this.state.todoInputValue };
-    let todos = this.state.todos.slice();
-    todos.push(addItem);
-
-    this.setState({
-      todos,
-      todoInputValue: '',
-    });
+  onClickAddButton() {
+    this.props.onAddTodo(this.state.todoInputValue);
+    this.setState({ todoInputValue: '' });
   }
 
   onCompleteTodo(id) {
-    let _state = Object.assign({}, this.state);
-    _state.todos.forEach(todo => {
-      if (todo.id == id) {
-        todo.completed = true;
-      }
-    });
-
-    this.setState(_state);
+    this.props.onCompleteTodo(id);
   }
 
   onDeleteTodo(id) {
-    let _state = Object.assign({}, this.state);
-    _state.todos.forEach(todo => {
-      if (todo.id == id) {
-        _state.todos.splice(todo, 1);
-      }
-    });
-
-    this.setState(_state);
+    this.props.onDeleteTodo(id);
   }
 
   renderTodoItems() {
     let todoItemDom = [];
-    this.state.todos.forEach((todo) => {
+    this.props.todoList.forEach((todo) => {
       if (!todo.completed) {
         let todoItem = <ListItem
-                        key={todo.id}
-                        data={todo}
-                        completeTodo={this.onCompleteTodo.bind(this)}
-                        deleteTodo={this.onDeleteTodo.bind(this)} />;
+                          key={todo.id}
+                          data={todo}
+                          completeTodo={() => this.onCompleteTodo(todo.id)}
+                          deleteTodo={() => this.onDeleteTodo(todo.id)} />;
         todoItemDom.push(todoItem);
       }
     });
@@ -80,7 +48,8 @@ export default class MainArea extends React.Component {
   render() {
     return (
       <div className="main-area">
-        <Header />
+        <Header
+          groupName={this.props.groupName} />
         <main className="list-area">
           <div className="todo-input-area">
             <input type="text"
