@@ -28,7 +28,7 @@ export default class EditGroupDialog extends React.Component{
   }
 
   onDelete() {
-    this.props.onDelete();
+    this.props.onDelete(this.props.group.id);
   }
 
   render() {

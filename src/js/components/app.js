@@ -95,6 +95,16 @@ export default class App extends React.Component {
     this.setState(_state);
   }
 
+  onDeleteGroup(id) {
+    let _state = Object.assign({}, this.state);
+    _state.groupList.forEach((group, index) => {
+      if (group.id == id) {
+        this.state.groupList.splice(index, 1);
+      }
+    });
+    this.setState(_state);
+  }
+
   render() {
     return (
       <div className="wrap">
@@ -102,7 +112,8 @@ export default class App extends React.Component {
           groupList={this.state.groupList}
           onSelect={this.onSelectGroup.bind(this)}
           onAddGroup={this.onAddGroup.bind(this)}
-          onEditGroup={this.onEditGroup.bind(this)} />
+          onEditGroup={this.onEditGroup.bind(this)}
+          onDeleteGroup={this.onDeleteGroup.bind(this)} />
         <MainArea
           todoList={this.state.todoList[this.state.selectedGroup]}
           onAddTodo={this.onAddTodo.bind(this)}

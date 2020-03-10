@@ -55,7 +55,8 @@ export default class SideArea extends React.Component {
     this.setState({ showEditGroupDialog: false });
   }
 
-  onDeleteEditGroupDialog() {
+  onDeleteEditGroupDialog(id) {
+    this.props.onDeleteGroup(id);
     this.setState({ showEditGroupDialog: false });
   }
 
