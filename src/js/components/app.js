@@ -110,6 +110,13 @@ export default class App extends React.Component {
   }
 
   render() {
+    let groupName = '';
+    this.state.groupList.forEach(group => {
+      if (group.id == this.state.selectedGroup) {
+        groupName = group.label;
+      }
+    });
+
     return (
       <div className="wrap">
         <SideArea
@@ -119,6 +126,7 @@ export default class App extends React.Component {
           onEditGroup={this.onEditGroup.bind(this)}
           onDeleteGroup={this.onDeleteGroup.bind(this)} />
         <MainArea
+          groupName={groupName}
           todoList={this.state.todoList[this.state.selectedGroup]}
           onAddTodo={this.onAddTodo.bind(this)}
           onCompleteTodo={this.onCompleteTodo.bind(this)}
