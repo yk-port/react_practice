@@ -118,10 +118,7 @@ export default class App extends React.Component {
 
     return (
       <div className="wrap">
-        <SideArea
-          onSelect={this.onSelectGroup.bind(this)}
-          onEditGroup={this.onEditGroup.bind(this)}
-          onDeleteGroup={this.onDeleteGroup.bind(this)} />
+        <SideArea />
         <MainArea />
       </div>
     );
