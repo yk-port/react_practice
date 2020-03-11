@@ -10,7 +10,7 @@ const groupInitState = {
     { id: 'group-2', label: 'グループ2' },
   ],
   groupCount: 2,
-  todoCount: 6,
+  selectedGroup: 'inbox',
 }
 
 const todoInitState = {
@@ -28,7 +28,7 @@ const todoInitState = {
       { id: 'item-6', label: 'Todo6', completed: false },
     ]
   },
-  selectedGroup: 'inbox',
+  todoCount: 6,
 }
 
 function todoReducer(state = todoInitState, action) {
@@ -38,16 +38,16 @@ function todoReducer(state = todoInitState, action) {
   switch (action.type) {
     case todoActionNames.ADD_TODO:
       _state.todoCount++;
-      todoList = _state.todoList[_state.selectedGroup];
+      todoList = _state.todoList[action.payload.selectedGroup];
       let todoItem = {
         id: 'item' + _state.todoCount,
-        label: action.payload.data,
+        label: action.payload.label,
         completed: false,
       };
       todoList.push(todoItem);
       return _state;
     case todoActionNames.COMPLETE_TODO:
-      todoList = _state.todoList[_state.selectedGroup];
+      todoList = _state.todoList[action.payload.selectedGroup];
       todoList.forEach(todo => {
         if (todo.id == action.payload.id) {
           todo.completed = true;
@@ -55,7 +55,7 @@ function todoReducer(state = todoInitState, action) {
       });
       return _state;
     case todoActionNames.DELETE_TODO:
-      todoList = _state.todoList[_state.selectedGroup];
+      todoList = _state.todoList[action.payload.selectedGroup];
       todoList.forEach((todo, index) => {
         if (todo.id == action.payload.id) {
           todoList.splice(index, 1);
