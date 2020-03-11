@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import { todoActionNames } from '../actions/todoActions';
 import { groupActionNames } from '../actions/groupActions'
 import _ from 'lodash';
@@ -27,9 +28,10 @@ const initialState = {
   todoCount: 6,
 }
 
-const reducer = (state = initialState, action) => {
+function todoReducer(state, action) {
   let _state = _.cloneDeep(state);
   let todoList = {};
+
   switch (action.type) {
     case todoActionNames.ADD_TODO:
       _state.todoCount++;
@@ -57,6 +59,15 @@ const reducer = (state = initialState, action) => {
         }
       });
       return _state;
+    default:
+      return state;
+  }
+}
+
+function groupReducer(state, action) {
+  let _state = _.cloneDeep(state);
+
+  switch (action.type) {
     case groupActionNames.ADD_GROUP:
       _state.groupCount++;
       let groupId = 'group-' + _state.groupCount;
@@ -92,5 +103,10 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 }
+
+const reducer = combineReducers({
+  todoReducer,
+  groupReducer
+});
 
 export default reducer;
