@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { CreateStore, createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 
 import App from './components/app';
 import MainArea from './components/mainArea';
@@ -14,9 +15,14 @@ const reducer = (state = { text: 'text' }, action) => {
   }
 }
 
+const logger = createLogger();
+
 const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose (
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(logger)
+  )
 );
 
 const onChange = (text) => {
