@@ -10,7 +10,6 @@ const initialState = {
     'inbox': [
       { id: 'item-1', label: 'Todo1', completed: false },
       { id: 'item-2', label: 'Todo2', completed: false },
-      { id: 'item-7', label: 'Todo7', completed: false },
     ],
     'group-1': [
       { id: 'item-3', label: 'Todo3', completed: false },
@@ -27,17 +26,37 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+  let _state = {};
+  let todoList = {};
   switch (action.type) {
     case todoActionNames.ADD_TODO:
-      let _state = Object.assign({}, state);
+      _state = Object.assign({}, state);
       _state.todoCount++;
-      let todoList = _state.todoList[_state.selectedGroup];
+      todoList = _state.todoList[_state.selectedGroup];
       let todoItem = {
         id: 'item' + _state.todoCount,
         label: action.payload.data,
         completed: false,
       };
       todoList.push(todoItem);
+      return _state;
+    case todoActionNames.COMPLETE_TODO:
+      _state = Object.assign({}, state);
+      todoList = _state.todoList[_state.selectedGroup];
+      todoList.forEach(todo => {
+        if (todo.id == action.payload.id) {
+          todo.completed = true;
+        }
+      });
+      return _state;
+    case todoActionNames.DELETE_TODO:
+      _state = Object.assign({}, state);
+      todoList = _state.todoList[_state.selectedGroup];
+      todoList.forEach((todo, index) => {
+        if (todo.id == action.payload.id) {
+          todoList.splice(index, 1);
+        }
+      });
       return _state;
     default:
       return state;
