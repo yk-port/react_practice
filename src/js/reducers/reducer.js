@@ -3,12 +3,17 @@ import { todoActionNames } from '../actions/todoActions';
 import { groupActionNames } from '../actions/groupActions'
 import _ from 'lodash';
 
-const initialState = {
+const groupInitState = {
   groupList: [
     { id: 'inbox', label: '受信箱' },
     { id: 'group-1', label: 'グループ1' },
     { id: 'group-2', label: 'グループ2' },
   ],
+  groupCount: 2,
+  todoCount: 6,
+}
+
+const todoInitState = {
   todoList: {
     'inbox': [
       { id: 'item-1', label: 'Todo1', completed: false },
@@ -24,11 +29,9 @@ const initialState = {
     ]
   },
   selectedGroup: 'inbox',
-  groupCount: 2,
-  todoCount: 6,
 }
 
-function todoReducer(state, action) {
+function todoReducer(state = todoInitState, action) {
   let _state = _.cloneDeep(state);
   let todoList = {};
 
@@ -64,7 +67,7 @@ function todoReducer(state, action) {
   }
 }
 
-function groupReducer(state, action) {
+function groupReducer(state = groupInitState, action) {
   let _state = _.cloneDeep(state);
 
   switch (action.type) {
