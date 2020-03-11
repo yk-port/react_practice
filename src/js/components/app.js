@@ -1,6 +1,6 @@
 import React from 'react';
-import SideArea from './sideArea';
 import MainArea from '../containers/mainArea';
+import SideArea from '../containers/sideArea';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -119,7 +119,6 @@ export default class App extends React.Component {
     return (
       <div className="wrap">
         <SideArea
-          groupList={this.state.groupList}
           onSelect={this.onSelectGroup.bind(this)}
           onAddGroup={this.onAddGroup.bind(this)}
           onEditGroup={this.onEditGroup.bind(this)}
