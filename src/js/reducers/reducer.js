@@ -8,6 +8,7 @@ const initialState = {
     'inbox': [
       { id: 'item-1', label: 'Todo1', completed: false },
       { id: 'item-2', label: 'Todo2', completed: false },
+      { id: 'item-7', label: 'Todo7', completed: false },
     ],
     'group-1': [
       { id: 'item-3', label: 'Todo3', completed: false },
