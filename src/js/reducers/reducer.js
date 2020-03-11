@@ -1,4 +1,5 @@
 import { todoActionNames } from '../actions/todoActions';
+import _ from 'lodash';
 
 const initialState = {
   groupList: [
@@ -30,7 +31,7 @@ const reducer = (state = initialState, action) => {
   let todoList = {};
   switch (action.type) {
     case todoActionNames.ADD_TODO:
-      _state = Object.assign({}, state);
+      _state = _.cloneDeep(state);
       _state.todoCount++;
       todoList = _state.todoList[_state.selectedGroup];
       let todoItem = {
@@ -41,17 +42,8 @@ const reducer = (state = initialState, action) => {
       todoList.push(todoItem);
       return _state;
     case todoActionNames.COMPLETE_TODO:
-      _state = Object.assign({}, state);
+      _state = _.cloneDeep(state);
       todoList = _state.todoList[_state.selectedGroup];
-      _state.todoList[_state.selectedGroup] = todoList.map(todo =>{
-        if (todo.id == action.payload.id) {
-          return Object.assign({}, todo, {
-            completed: true,
-          });
-        } else {
-          return todo;
-        }
-      });
       todoList.forEach(todo => {
         if (todo.id == action.payload.id) {
           todo.completed = true;
@@ -59,14 +51,13 @@ const reducer = (state = initialState, action) => {
       });
       return _state;
     case todoActionNames.DELETE_TODO:
-      _state = Object.assign({}, state);
+      _state = _.cloneDeep(state);
       todoList = _state.todoList[_state.selectedGroup];
       todoList.forEach((todo, index) => {
         if (todo.id == action.payload.id) {
           todoList.splice(index, 1);
         }
       });
-      _state.todoList[_state.selectedGroup] = todoList.slice();
       return _state;
     default:
       return state;
