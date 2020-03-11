@@ -14,7 +14,10 @@ const reducer = (state = { text: 'text' }, action) => {
   }
 }
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 const onChange = (text) => {
   const action = {
