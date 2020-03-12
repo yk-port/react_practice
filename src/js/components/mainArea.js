@@ -61,7 +61,7 @@ export default class MainArea extends React.Component {
                     onClick={this.onClickAddButton.bind(this)}>登録</button>
           </div>
           <ul className="todo-list">
-            {this.renderTodoItems()}
+            {/* {this.renderTodoItems()} */}
           </ul>
         </main>
         <Footer />
