@@ -1,4 +1,5 @@
 import { todoActionNames } from '../actions/todoActions';
+import _ from 'lodash';
 
 const initialState = {
   groupList: [
@@ -31,7 +32,7 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case todoActionNames.ADD_TODO:
-      _state = Object.assign({}, state);
+      _state = _.cloneDeep(state);
       _state.todoCount++;
       let todoList = _state.todoList[_state.selectedGroup];
       let todoItem = {
@@ -43,28 +44,23 @@ const reducer = (state = initialState, action) => {
       return _state;
 
     case todoActionNames.COMPLETE_TODO:
-      _state = Object.assign({}, state);
+      _state = _.cloneDeep(state);
       todoList = _state.todoList[_state.selectedGroup];
-      _state.todoList[_state.selectedGroup] = todoList.map(todo => {
+      todoList.forEach(todo => {
         if (todo.id == action.payload.id) {
-          return Object.assign({}, todo, {
-            completed: true,
-          });
-        } else {
-          return todo;
+          todo.completed = true;
         }
       });
       return _state;
 
     case todoActionNames.DELETE_TODO:
-      _state = Object.assign({}, state);
+      _state = _.cloneDeep(state);
       todoList = _state.todoList[_state.selectedGroup];
       todoList.forEach((todo, index) => {
         if (todo.id == action.payload.id) {
           todoList.splice(index, 1);
         }
       });
-      _state.todoList[_state.selectedGroup] = todoList.slice();
       return _state;
 
     default:
