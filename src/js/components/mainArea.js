@@ -14,8 +14,7 @@ export default class MainArea extends React.Component {
   }
 
   onChangeTodoInput(event){
-    // this.setState({ todoInputValue: event.target.value })
-    this.props.onChange(event.target.value)
+    this.setState({ todoInputValue: event.target.value })
   }
 
   onClickAddButton() {
@@ -56,13 +55,13 @@ export default class MainArea extends React.Component {
             <input type="text"
                    className="todo-input"
                    placeholder="Todoを追加"
-                   value={this.props.text}
+                   value={this.state.todoInputValue}
                    onChange={this.onChangeTodoInput.bind(this)} />
             <button className="add-button"
                     onClick={this.onClickAddButton.bind(this)}>登録</button>
           </div>
           <ul className="todo-list">
-            {/* {this.renderTodoItems()} */}
+            {this.renderTodoItems()}
           </ul>
         </main>
         <Footer />

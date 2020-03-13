@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 
-// import App from './components/app';
-import MainArea from './components/mainArea';
+import App from './components/app';
 
 const reducer = (state = { text: 'text' }, action) => {
   console.log(action);
@@ -38,9 +37,7 @@ const render = () => {
   const state = store.getState();
 
   ReactDOM.render(
-    <MainArea
-      text={state.text}
-      onChange={onChange} />,
+    <App />,
     document.getElementById('root')
   );
 }
