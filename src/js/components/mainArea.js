@@ -17,17 +17,17 @@ export default class MainArea extends React.Component {
     this.setState({ todoInputValue: event.target.value })
   }
 
-  onClickAddButton() {
-    this.props.onAddTodo(this.state.todoInputValue);
+  onClickAddButton(event) {
+    this.props.onAddTodo(this.state.todoInputValue, this.props.selectedGroup);
     this.setState({ todoInputValue: '' });
   }
 
   onCompleteTodo(id) {
-    this.props.onCompleteTodo(id);
+    this.props.onCompleteTodo(id, this.props.selectedGroup);
   }
 
   onDeleteTodo(id) {
-    this.props.onDeleteTodo(id);
+    this.props.onDeleteTodo(id, this.props.selectedGroup);
   }
 
   renderTodoItems() {

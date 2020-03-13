@@ -40,17 +40,17 @@ function todoReducer(state = todoInitState, action) {
   switch (action.type) {
     case todoActionNames.ADD_TODO:
       _state.todoCount++;
-      todoList = _state.todoList[_state.selectedGroup];
+      todoList = _state.todoList[action.payload.selectedGroup];
       let todoItem = {
         id: 'item' + _state.todoCount,
-        label: action.payload.data,
+        label: action.payload.label,
         completed: false,
       };
       todoList.push(todoItem);
       return _state;
 
     case todoActionNames.COMPLETE_TODO:
-      todoList = _state.todoList[_state.selectedGroup];
+      todoList = _state.todoList[action.payload.selectedGroup];
       todoList.forEach(todo => {
         if (todo.id == action.payload.id) {
           todo.completed = true;
@@ -59,12 +59,20 @@ function todoReducer(state = todoInitState, action) {
       return _state;
 
     case todoActionNames.DELETE_TODO:
-      todoList = _state.todoList[_state.selectedGroup];
+      todoList = _state.todoList[action.payload.selectedGroup];
       todoList.forEach((todo, index) => {
         if (todo.id == action.payload.id) {
           todoList.splice(index, 1);
         }
       });
+      return _state;
+
+    case groupActionNames.ADD_GROUP:
+      _state.todoList[action.payload.groupId] = [];
+      return _state;
+
+    case groupActionNames.DELETE_GROUP:
+      delete _state.todoList[action.payload.id];
       return _state;
 
     default:
@@ -78,13 +86,11 @@ function groupReducer(state = groupInitState, action) {
   switch (action.type) {
     case groupActionNames.ADD_GROUP:
       _state.groupCount++;
-      let groupId = 'group-' + _state.groupCount;
       let groupItem = {
-        id: groupId,
+        id: action.payload.groupId,
         label: action.payload.data,
       }
       _state.groupList.push(groupItem);
-      _state.todoList[groupId] = [];
       return _state;
 
     case groupActionNames.SELECT_GROUP:
@@ -105,7 +111,6 @@ function groupReducer(state = groupInitState, action) {
           _state.groupList.splice(index, 1);
         }
       });
-      delete _state.todoList[action.payload.id];
       if (_state.selectedGroup == action.payload.id) {
         _state.selectedGroup = 'inbox';
       }
