@@ -72,6 +72,30 @@ const reducer = (state = initialState, action) => {
       _state.todoList[groupId] = [];
       return _state;
 
+    case groupActionNames.SELECT_GROUP:
+      _state.selectedGroup = action.payload.id;
+      return _state;
+
+    case groupActionNames.EDIT_GROUP:
+      _state.groupList.forEach(group => {
+        if (group.id == action.payload.id) {
+          group.label = action.payload.groupName;
+        }
+      });
+      return _state;
+
+    case groupActionNames.DELETE_GROUP:
+      _state.groupList.forEach((group, index) => {
+        if (group.id == action.payload.id) {
+          _state.groupList.splice(index, 1);
+        }
+      });
+      delete _state.todoList[action.payload.id];
+      if (_state.selectedGroup == action.payload.id) {
+        _state.selectedGroup = 'inbox';
+      }
+      return _state;
+
     default:
       return state;
   }
