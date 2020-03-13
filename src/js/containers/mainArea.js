@@ -9,6 +9,7 @@ function getGroupName(groupList, selectedGroup) {
       groupName = group.label;
     }
   });
+  return groupName;
 }
 
 const mapStateToProps = (state) => {
@@ -29,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onDeleteTodo: (id, selectedGroup) => {
       dispatch(todoActions.deleteTodo(id, selectedGroup));
-    }
+    },
   }
 }
 

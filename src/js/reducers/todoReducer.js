@@ -22,7 +22,7 @@ const todoInitState = {
 
 function todoReducer(state = todoInitState, action) {
   let _state = _.cloneDeep(state);
-  let todoList = {};
+  let todoList = '';
 
   switch (action.type) {
     case todoActionNames.ADD_TODO:
@@ -35,6 +35,7 @@ function todoReducer(state = todoInitState, action) {
       };
       todoList.push(todoItem);
       return _state;
+
     case todoActionNames.COMPLETE_TODO:
       todoList = _state.todoList[action.payload.selectedGroup];
       todoList.forEach(todo => {
@@ -43,6 +44,7 @@ function todoReducer(state = todoInitState, action) {
         }
       });
       return _state;
+
     case todoActionNames.DELETE_TODO:
       todoList = _state.todoList[action.payload.selectedGroup];
       todoList.forEach((todo, index) => {
@@ -51,12 +53,15 @@ function todoReducer(state = todoInitState, action) {
         }
       });
       return _state;
+      
     case groupActionNames.ADD_GROUP:
       _state.todoList[action.payload.groupId] = [];
       return _state;
+
     case groupActionNames.DELETE_GROUP:
       delete _state.todoList[action.payload.id];
       return _state;
+
     default:
       return state;
   }

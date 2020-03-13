@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-import todoReducer from './todoReducer';
 import groupReducer from './groupReducer';
-import _ from 'lodash';
+import todoReducer from './todoReducer';
 
 const reducer = combineReducers({
   todoReducer,

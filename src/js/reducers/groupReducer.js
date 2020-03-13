@@ -7,8 +7,8 @@ const groupInitState = {
     { id: 'group-1', label: 'グループ1' },
     { id: 'group-2', label: 'グループ2' },
   ],
-  groupCount: 2,
   selectedGroup: 'inbox',
+  groupCount: 2,
 }
 
 function groupReducer(state = groupInitState, action) {
@@ -23,9 +23,11 @@ function groupReducer(state = groupInitState, action) {
       }
       _state.groupList.push(groupItem);
       return _state;
+
     case groupActionNames.SELECT_GROUP:
-      _state.selectedGroup = action.payload.id
+      _state.selectedGroup = action.payload.id;
       return _state;
+
     case groupActionNames.EDIT_GROUP:
       _state.groupList.forEach(group => {
         if (group.id == action.payload.id) {
@@ -33,6 +35,7 @@ function groupReducer(state = groupInitState, action) {
         }
       });
       return _state;
+      
     case groupActionNames.DELETE_GROUP:
       _state.groupList.forEach((group, index) => {
         if (group.id == action.payload.id) {
@@ -43,6 +46,7 @@ function groupReducer(state = groupInitState, action) {
         _state.selectedGroup = 'inbox';
       }
       return _state;
+
     default:
       return state;
   }

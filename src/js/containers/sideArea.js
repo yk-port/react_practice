@@ -11,10 +11,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddGroup: (data, groupId) => {
-      dispatch(groupActions.addGroup(data, groupId));
+    onAddGroup: (data, groupid) => {
+      dispatch(groupActions.addGroup(data, groupid));
     },
-    onSelect: (id) => {
+    onSelectGroup: (id) => {
       dispatch(groupActions.selectGroup(id));
     },
     onEditGroup: (id, groupName) => {
