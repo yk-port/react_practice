@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SideArea from './sideArea'
-import MainArea from './mainArea'
+import SideArea from './sideArea';
+import MainArea from '../containers/mainArea';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -125,12 +125,7 @@ export default class App extends React.Component {
           onAddGroup={this.onAddGroup.bind(this)}
           onEditGroup={this.onEditGroup.bind(this)}
           onDeleteGroup={this.onDeleteGroup.bind(this)} />
-        <MainArea
-          groupName={groupName}
-          todoList={this.state.todoList[this.state.selectedGroup]}
-          onAddTodo={this.onAddTodo.bind(this)}
-          onCompleteTodo={this.onCompleteTodo.bind(this)}
-          onDeleteTodo={this.onDeleteTodo.bind(this)} />
+        <MainArea />
       </div>
     );
   }

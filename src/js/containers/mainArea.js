@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { todoActions } from '../actions/todoActions';
+import MainArea from '../components/mainArea';
 
 function getGroupName(groupList, selectedGroup) {
   let groupName = '';
@@ -25,3 +26,8 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainArea);
