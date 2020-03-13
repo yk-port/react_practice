@@ -23,7 +23,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onAddTodo: (data) => {
       dispatch(todoActions.addTodo(data));
-    }
+    },
+    onCompleteTodo: (id) => {
+      dispatch(todoActions.completeTodo(id));
+    },
+    onDeleteTodo: (id) => {
+      dispatch(todoActions.deleteTodo(id));
+    },
   }
 }
 
