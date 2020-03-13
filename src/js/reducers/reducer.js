@@ -45,9 +45,13 @@ const reducer = (state = initialState, action) => {
     case todoActionNames.COMPLETE_TODO:
       _state = Object.assign({}, state);
       todoList = _state.todoList[_state.selectedGroup];
-      todoList.forEach(todo => {
+      _state.todoList[_state.selectedGroup] = todoList.map(todo => {
         if (todo.id == action.payload.id) {
-          todo.completed = true;
+          return Object.assign({}, todo, {
+            completed: true,
+          });
+        } else {
+          return todo;
         }
       });
       return _state;
@@ -60,6 +64,7 @@ const reducer = (state = initialState, action) => {
           todoList.splice(index, 1);
         }
       });
+      _state.todoList[_state.selectedGroup] = todoList.slice();
       return _state;
 
     default:
