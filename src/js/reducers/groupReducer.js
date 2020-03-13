@@ -1,5 +1,4 @@
 import { groupActionNames } from '../actions/groupActions';
-
 import _ from 'lodash';
 
 const groupInitState = {
@@ -36,7 +35,7 @@ function groupReducer(state = groupInitState, action) {
         }
       });
       return _state;
-
+      
     case groupActionNames.DELETE_GROUP:
       _state.groupList.forEach((group, index) => {
         if (group.id == action.payload.id) {

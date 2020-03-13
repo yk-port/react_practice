@@ -1,5 +1,4 @@
 import React from 'react';
-
 import MainArea from '../containers/mainArea';
 import SideArea from '../containers/sideArea';
 

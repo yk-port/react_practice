@@ -1,6 +1,5 @@
 import { todoActionNames } from '../actions/todoActions';
 import { groupActionNames } from '../actions/groupActions';
-
 import _ from 'lodash';
 
 const todoInitState = {
@@ -54,7 +53,7 @@ function todoReducer(state = todoInitState, action) {
         }
       });
       return _state;
-
+      
     case groupActionNames.ADD_GROUP:
       _state.todoList[action.payload.groupId] = [];
       return _state;
