@@ -18,7 +18,7 @@ export default class SideArea extends React.Component {
   onClickGroup(event) {
     let listItem = ReactDOM.findDOMNode(event.target);
     let clickedId = listItem.dataset.id;
-    this.props.onSelect(clickedId);
+    this.props.onSelectGroup(clickedId);
   }
 
   onClickAddGroup() {
